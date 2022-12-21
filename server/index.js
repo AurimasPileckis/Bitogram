@@ -1,10 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import session from 'express-session'
-import profile from './controller/profile.js'
 import users from './controller/users.js'
 import posts from './controller/posts.js'
 import comments from './controller/comments.js'
+import likes from './controller/likes.js'
 
 
 const app = express()
@@ -34,9 +34,9 @@ app.use(session({
 //Priskiriame users kontrolerį
 
 app.use('/api/users/', users)
-app.use('/api/profile/', profile)
 app.use('/api/posts/', posts)
 app.use('/api/comments/', comments)
+app.use('/api/likes/', likes)
 
 
 

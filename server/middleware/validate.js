@@ -52,6 +52,17 @@ export const registerValidator = (req, res, next) => {
     validate(schema, req, res, next)
 }
 
+export const userValidator = (req, res, next) => {
+	const schema = Joi.object({
+		full_name: Joi.string().min(1).max(255).required(),
+		user_name: Joi.string().min(1).max(255).required(),
+		photo: Joi.string().allow(''),
+		bio: Joi.string().allow(''),
+		id: Joi.number().required()
+	});
+	validate(schema, req, res, next);
+};
+
 export const loginValidator = (req, res, next) => {
     const schema = Joi.object({
         email: Joi.string().email().required(),
@@ -61,13 +72,29 @@ export const loginValidator = (req, res, next) => {
     validate(schema, req, res, next)
 }
 
+export const postValidator = (req, res, next) => {
+	const schema = Joi.object({
+		post_caption: Joi.string().required(),
+		post_photo: Joi.string().allow('')
+	});
+	validate(schema, req, res, next);
+};
+
 export const commentsValidator = (req, res, next) => {
     const schema = Joi.object({
         comment: Joi.string().min(5).required(),
-        postId: Joi.number().required()
+        userId: Joi.number().required()
     })
 
     validate(schema, req, res, next)
 }
+
+export const likeValidator = (req, res, next) => {
+	const schema = Joi.object({
+		like: Joi.boolean().required(),
+		userId: Joi.number().required()
+	});
+	validate(schema, req, res, next);
+};
 
 export default validate
