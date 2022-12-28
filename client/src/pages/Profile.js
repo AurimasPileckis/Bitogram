@@ -1,89 +1,51 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import arrowBackImg from '../pages/icons/arrow-back.svg';
-import MainContext from '../context/MainContext';
-import defaultAvatar from '../pages/icons/default_avatar.jpg';
+// import { useState, useContext, useEffect } from 'react'
+// import { useNavigate, useParams } from 'react-router-dom'
+// import axios from 'axios'
 
-const Profile = () => {
-	const { id } = useParams();
-	const navigate = useNavigate();
-	const { setAlert } = useContext(MainContext);
-	const [ profile, setProfile ] = useState({});
-	useEffect(() => {
-        axios.get('/api/users/user/' + id)
-			 .then((resp) => {
-					let postsCount = 0;
-					resp.data.posts.map((post) => {
-						return (postsCount += 1);
-					});
-					resp.data.postsCount = postsCount;
-					setProfile(resp.data);
-				})
-				.catch((error) => {
-					console.log(error);
-					setAlert({ message: error.response.data, status: 'danger' });
-					if (error.response.status === 401) {
-						setTimeout(() => {
-							navigate('/');
-						}, 1000);
-					}
-				});
-		},
-		[ id ]
-	);
-	console.log(profile);
-	return (
-		profile && (
-			<div className="profile-page">
-				<header className="header-container">
-					<div className="sub-header oneside">
-						<Link to={'/explore'}>
-							<img src={arrowBackImg} alt="back" className="back-arrow" />
-						</Link>
-						<h2 className="profile-username">{profile.user_name}</h2>
-					</div>
-				</header>
-				<main className="container">
-					<div className="profile-container">
-						<div className="profile-top">
-							<img
-								src={profile.photo ? profile.photo : defaultAvatar}
-								alt={profile.user_name}
-								className="profile-picture"
-							/>
-							<div className="profile-data">
-								<h3>{profile.postsCount}</h3>
-								<p>Posts</p>
-							</div>
-							<div className="profile-data">
-								<h3>4,815</h3>
-								<p>Followers</p>
-							</div>
-							<div className="profile-data">
-								<h3>834</h3>
-								<p>Following</p>
-							</div>
-						</div>
-						<div className="profile-info">
-							<h4>{profile.full_ame}</h4>
-							<p>{profile.bio}</p>
-						</div>
-						<div className="profile-posts">
-							{profile.posts &&
-								profile.posts.map((post) => {
-									return (
-										<Link to={`/userPosts/${id}`} key={post.id}>
-											<img src={post.post_photo} alt="post-photo" className="post-photo" />
-										</Link>
-									);
-								})}
-						</div>
-					</div>
-				</main>
-			</div>
-		)
-	);
-};
 
-export default Profile;
+
+// const Profile = () => {
+
+
+//  const [users, setUsers] = useState([])
+//  const [refresh, setRefresh] = useState(false)
+//     const [alert, setAlert] = useState({
+//         message: '',
+//        status: ''
+//     })
+
+        
+//     useEffect(() => {
+//         axios.get('/api/users/')
+//         .then(resp => {
+          
+//           setUsers(resp.data)
+//             })
+       
+          
+//         .catch(error => {
+//           setAlert({
+//             message: error.response.data,
+//             status: 'danger'
+//           })
+//         })
+//       }, [refresh])
+
+//     return (
+//         <div className="mb-5 container">
+//         <div className="single-post">
+//         {users.map(user => {
+//             return (
+//                 <>
+//             <h1>{user.first_name}</h1>
+//             <div className="image" style={{ backgroundImage: 'url(' + user.photo + ')' }}></div>
+//             </>
+//             )
+//         })}
+//         </div>
+//     </div>
+       
+//     )
+// }
+
+// export default Profile

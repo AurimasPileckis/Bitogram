@@ -56,7 +56,7 @@ const Login = (props) => {
             <form onSubmit={handleSubmit}>
             <h1>Log In</h1>
                 <div className="form-group mb-2">
-                    <input type="email" name="email" className="form-control" onChange={handleForm} placeholder="yourmom@gmail.com" />
+                    <input type="email" name="email" className="form-control" onChange={handleForm} placeholder="something@gmail.com" />
                 </div>
                 <div className="form-group mb-3">
                     <input type="password" name="password" className="form-control" onChange={handleForm} placeholder="password" />

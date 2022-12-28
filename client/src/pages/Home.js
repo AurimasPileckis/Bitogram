@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import MainContext from '../context/MainContext';
 import axios from 'axios'
 import chat from './icons/chat-bubble.png'
 import heart from './icons/heart.png'
@@ -13,6 +12,10 @@ const Home = () => {
     const { id } = useParams()
     const [comment, setComment] = useState('')
     const [posts, setPosts] = useState([])
+    const [alert, setAlert] = useState({
+      message: '',
+      status: ''
+    })
 
     const navigate = useNavigate()
     const [refresh, setRefresh] = useState(false)
@@ -66,6 +69,12 @@ const Home = () => {
 
 
 return (
+    <div className="container">
+    {alert.message && (
+      <div className={'alert alert-' + alert.status}>
+        {alert.message}
+      </div>
+    )}
       <div className="posts">
           {posts.map(post => {
             return (

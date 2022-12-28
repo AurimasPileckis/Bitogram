@@ -5,7 +5,7 @@ import MainContext from './context/MainContext'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
-import Explore from './pages/Explore'
+import Home from './pages/Home'
 import Profile from './pages/Profile'
 import NewPost from './pages/NewPost'
 import Header from './components/Header/Header'
@@ -39,7 +39,7 @@ const App = () => {
         <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn}/>} />
         { loggedIn && 
       <>
-      <Route path="/explore" element={<Explore loggedIn={loggedIn} />} />
+      <Route path="/explore" element={<Home loggedIn={loggedIn} />} />
       <Route path="/new-post" element={<NewPost />} />
       <Route path="/profile" element={<Profile />} />
       </>
