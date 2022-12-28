@@ -1,0 +1,1 @@
+Open server and client Intergrated Terminals and in both of them run "npm install", then "npm start".
